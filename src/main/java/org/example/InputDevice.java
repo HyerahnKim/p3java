@@ -8,4 +8,8 @@ public class InputDevice {
     public int nextInt() {
         return (int)(Math.random()*100) + 1;
     }
+
+
+
+
 }

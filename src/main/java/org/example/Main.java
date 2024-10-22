@@ -6,15 +6,15 @@ public class Main {
     // Method declaration
     public static void main(String[] args) {
 
-        // InputDevice object
-        InputDevice inputDevice = new InputDevice();
+    // Creating instance of class A named objectA
+    A name = new A("Logitech Vertical Mouse");
+    C[] versionArray = new C[3];
+    versionArray[0] = new C(20);
+    versionArray[1] = new C(21);
+    versionArray[2] = new C(22);
+    B productInfo = new B(name, versionArray);
 
-        // OutputDevice object
-        OutputDevice outputDevice = new OutputDevice();
-
-        // pass InputDevice object to Application object
-        Application app = new Application(inputDevice, outputDevice);
-
-        app.run();
+    OutputDevice outputDevice = new OutputDevice();
+    outputDevice.printAvailableVersions(productInfo, "Logitech Vertical Mouse");
     }
 }
