@@ -1,6 +1,6 @@
 package com.animalshelter;
 
-public class Cat extends Animal implements Voice, Diet {
+public class Cat extends Animal implements Voice, Diet, Comparable<Cat> {
     private String pattern;
 
     public Cat(String name, int age, String sex, String pattern) {
@@ -23,6 +23,12 @@ public class Cat extends Animal implements Voice, Diet {
 
     public void eat() {
         System.out.println("Cat is eating yogurt.");
+    }
+
+    // Implementing compareTo to compare by age
+    @Override
+    public int compareTo(Cat otherCat) {
+        return Integer.compare(this.age, otherCat.age);
     }
 
     @Override

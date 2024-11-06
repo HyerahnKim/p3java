@@ -1,6 +1,6 @@
 package com.animalshelter;
 
-public class Dog extends Animal implements Voice, Diet {
+public class Dog extends Animal implements Voice, Diet, Comparable<Dog>{
     private String breed;
 
     public Dog(String name, int age, String sex, String breed) {
@@ -23,6 +23,11 @@ public class Dog extends Animal implements Voice, Diet {
 
     public void setBreed(String breed) {
         this.breed = breed;
+    }
+
+    @Override
+    public int compareTo(Dog otherDog) {
+        return Integer.compare(this.age, otherDog.age);
     }
 
     public String toString() {
