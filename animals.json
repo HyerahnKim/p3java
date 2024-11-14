@@ -1,0 +1,37 @@
+{"animals": [
+    {
+        "sex": "Male",
+        "name": "Rex",
+        "type": "Dog",
+        "age": 3,
+        "breed": "German Shepherd"
+    },
+    {
+        "sex": "Female",
+        "name": "Whiskers",
+        "pattern": "Tabby",
+        "type": "Cat",
+        "age": 2
+    },
+    {
+        "color": "White",
+        "sex": "Female",
+        "name": "Snowball",
+        "type": "Rabbit",
+        "age": 1
+    },
+    {
+        "sex": "Male",
+        "name": "Spike",
+        "poisonous": true,
+        "type": "Lizard",
+        "age": 5
+    },
+    {
+        "sex": "female",
+        "name": "mango",
+        "type": "Dog",
+        "age": 3,
+        "breed": "mango"
+    }
+]}
