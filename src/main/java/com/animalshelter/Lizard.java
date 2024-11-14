@@ -1,4 +1,5 @@
 package com.animalshelter;
+import org.json.JSONObject;
 
 public class Lizard extends Animal implements Diet {
     private boolean poisonous;
@@ -16,6 +17,16 @@ public class Lizard extends Animal implements Diet {
         this.poisonous = poisonous;
     }
 
+    // json
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = super.toJson();
+        json.put("type", "Lizard");
+        json.put("poisonous", poisonous);
+        return json;
+    }
+
+    // Interface for Diet
     public void eat() {
         System.out.println("Lizard is eating insects.");
     }

@@ -1,4 +1,5 @@
 package com.animalshelter;
+import org.json.JSONObject;
 
 public class Cat extends Animal implements Voice, Diet, Comparable<Cat> {
     private String pattern;
@@ -17,12 +18,21 @@ public class Cat extends Animal implements Voice, Diet, Comparable<Cat> {
         this.pattern = pattern;
     }
 
+    // Interface Voice and Diet
     public void makeSound() {
         System.out.println("Meow! Meow!");
     }
-
     public void eat() {
         System.out.println("Cat is eating yogurt.");
+    }
+
+    // json
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = super.toJson();
+        json.put("type", "Cat");
+        json.put("pattern", pattern);
+        return json;
     }
 
     // Implementing compareTo to compare by age

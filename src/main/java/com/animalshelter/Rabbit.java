@@ -1,4 +1,5 @@
 package com.animalshelter;
+import org.json.JSONObject;
 
 public class Rabbit extends Animal implements Diet{
     private String color;
@@ -12,11 +13,20 @@ public class Rabbit extends Animal implements Diet{
     public String getColor() {
         return color;
     }
-
     public void setColor(String color) {
         this.color = color;
     }
 
+    // json
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = super.toJson();
+        json.put("type", "Rabbit");
+        json.put("color", color);
+        return json;
+    }
+
+    // Interface for Diet
     public void eat() {
         System.out.println("Rabbit is eating cabbages.");
     }

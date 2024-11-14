@@ -1,4 +1,5 @@
 package com.animalshelter;
+import org.json.JSONObject;
 
 //Animal can have a constructor that takes name, age, and sex
 
@@ -17,7 +18,6 @@ public class Animal {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -37,9 +37,16 @@ public class Animal {
     public String getSex() {
         return sex;
     }
-
     public void setSex(String sex) {
         this.sex = sex;
     }
 
+    // json
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("age", age);
+        json.put("sex", sex);
+        return json;
+    }
 }

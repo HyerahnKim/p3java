@@ -1,4 +1,5 @@
 package com.animalshelter;
+import org.json.JSONObject;
 
 public class Dog extends Animal implements Voice, Diet, Comparable<Dog>{
     private String breed;
@@ -8,10 +9,10 @@ public class Dog extends Animal implements Voice, Diet, Comparable<Dog>{
         this.breed = breed;
     }
 
+    // Interface Voice and Diet
     public void makeSound() {
         System.out.println("Woof! Woof!");
     }
-
     public void eat() {
         System.out.println("Dog is eating blueberries.");
     }
@@ -20,9 +21,17 @@ public class Dog extends Animal implements Voice, Diet, Comparable<Dog>{
     public String getBreed() {
         return breed;
     }
-
     public void setBreed(String breed) {
         this.breed = breed;
+    }
+
+    // json
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = super.toJson();
+        json.put("type", "Dog");
+        json.put("breed", breed);
+        return json;
     }
 
     @Override
