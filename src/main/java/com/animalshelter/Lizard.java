@@ -18,7 +18,13 @@ public class Lizard extends Animal implements Diet {
     }
 
     // json
-
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = super.toJson();
+        json.put("type", "Lizard");
+        json.put("poisonous", poisonous);
+        return json;
+    }
 
     // Interface for Diet
     public void eat() {
@@ -27,15 +33,6 @@ public class Lizard extends Animal implements Diet {
 
     @Override
     public String toString() {
-        return "Lizard [Name=" + name + ", Age=" + age + ", Sex=" + sex + ", Poisonous=" + poisonous + "]";
-    }
-
-    @Override
-    public JSONObject toJson() {
-        JSONObject json = super.toJson();
-        json.put("type", "Lizard");
-        json.put("poisonous", poisonous);
-        return json;
+        return "Lizard [Name=" + name + ", Age=" + age + ", Sex=" + sex + "]";
     }
 }
-

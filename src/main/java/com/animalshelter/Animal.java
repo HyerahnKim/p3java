@@ -19,10 +19,7 @@ public class Animal {
         return name;
     }
     public void setName(String name) {
-        if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Name cannot be null or empty");
-        }
-        this.name = name.toLowerCase(); // Automatically convert to lowercase
+        this.name = name;
     }
 
     // Getter and Setter for age

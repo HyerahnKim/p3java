@@ -1,4 +1,5 @@
 package com.animalshelter;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -12,199 +13,123 @@ public class Main {
     public static void main(String[] args) {
         Shelter shelter = new Shelter();
         Scanner scanner = new Scanner(System.in);
-        // Load animals from JSON at startup
-        try {
-            shelter.loadAnimalsFromJson("animals.json");
-            System.out.println("Animals loaded successfully from animals.json.");
-        } catch (IOException e) {
-            System.out.println("Error loading animals from JSON file: " + e.getMessage());
+
+        System.out.println("Are you an adopter or an admin?");
+        System.out.println("1. Adopter");
+        System.out.println("2. Admin");
+
+        int roleChoice = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+        Role userRole;
+
+        if (roleChoice == 1) {
+            userRole = Role.ADOPTER;
+        } else if (roleChoice == 2) {
+            userRole = Role.ADMIN;
+        } else {
+            System.out.println("Invalid choice. Exiting...");
+            return;
         }
 
-        boolean programRunning = true; // Main program loop
-
-        while (programRunning) {
-            Role userRole = getUserRole(scanner); // Ask user for their role
-
-            boolean inMenu = true;
-            while (inMenu) {
-                switch (userRole) {
-                    case ADOPTER:
-                        inMenu = handleAdopterMenu(shelter, scanner);
-                        break;
-                    case ADMIN:
-                        inMenu = handleAdminMenu(shelter, scanner);
-                        break;
-                }
+        boolean running = true;
+        while (running) {
+            if (userRole == Role.ADOPTER) {
+                displayAdopterMenu(shelter, scanner);
+            } else if (userRole == Role.ADMIN) {
+                displayAdminMenu(shelter, scanner);
             }
 
             System.out.println("Do you want to continue? (y/n)");
             String continueChoice = scanner.nextLine().trim().toLowerCase();
             if (!continueChoice.equals("y")) {
-                programRunning  = false;
+                running = false;
             }
         }
 
-        System.out.println("Exiting the program. Goodbye!");
         scanner.close();
     }
 
-    private static Role getUserRole(Scanner scanner) {
-        ExceptionHandler exceptionHandler = new ExceptionHandler(); // Create an instance of ExceptionHandler
+    private static void displayAdopterMenu(Shelter shelter, Scanner scanner) {
+        System.out.println("\nAdopter Menu:");
+        System.out.println("1. Display all animals");
+        System.out.println("2. Sort animals by age");
+        System.out.println("3. Group animals by type");
+        System.out.println("4. Exit");
 
-        while (true) {
-            try {
-                System.out.println("=================================");
-                System.out.println("Are you an adopter or an admin?");
-                System.out.println("1. Adopter");
-                System.out.println("2. Admin");
-                System.out.println("=================================");
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
 
-                int roleChoice = scanner.nextInt();
-                scanner.nextLine(); // Consume newline
+        switch (choice) {
+            case 1:
+                shelter.displayAnimals();
+                break;
+            case 2:
+                shelter.sortAnimalsByAge();
+                break;
+            case 3:
+                shelter.groupAnimalsByType();
+                break;
+            case 4:
+                System.out.println("Exiting Adopter Menu...");
+                break;
+            default:
+                System.out.println("Invalid option. Please choose again.");
+                break;
+        }
+    }
 
-                if (roleChoice == 1) {
-                    return Role.ADOPTER;
-                } else if (roleChoice == 2) {
-                    return Role.ADMIN;
-                } else {
-                    exceptionHandler.handleInvalidInput();
+    private static void displayAdminMenu(Shelter shelter, Scanner scanner) {
+        System.out.println("\nAdmin Menu:");
+        System.out.println("1. Add an Animal");
+        System.out.println("2. Display all animals");
+        System.out.println("3. Sort animals by age");
+        System.out.println("4. Group animals by type");
+        System.out.println("5. Save animals to JSON");
+        System.out.println("6. Load animals from JSON");
+        System.out.println("7. Exit");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        switch (choice) {
+            case 1:
+                addAnimal(shelter, scanner);
+                break;
+            case 2:
+                shelter.displayAnimals();
+                break;
+            case 3:
+                shelter.sortAnimalsByAge();
+                break;
+            case 4:
+                shelter.groupAnimalsByType();
+                break;
+            case 5:
+                try {
+                    shelter.saveAnimalsToJson("animals.json");
+                    System.out.println("Animals saved to JSON.");
+                } catch (IOException e) {
+                    System.out.println("Error saving animals to JSON.");
                 }
-            } catch (java.util.InputMismatchException e) {
-                scanner.nextLine(); // Clear invalid input
-                exceptionHandler.handleInvalidInput();
-            }
+                break;
+            case 6:
+                try {
+                    shelter.loadAnimalsFromJson("animals.json");
+                    System.out.println("Animals loaded from JSON.");
+                } catch (IOException e) {
+                    System.out.println("Error loading animals from JSON.");
+                }
+                break;
+            case 7:
+                System.out.println("Exiting Admin Menu...");
+                break;
+            default:
+                System.out.println("Invalid option. Please choose again.");
+                break;
         }
-    }
-
-    private static boolean handleAdopterMenu(Shelter shelter, Scanner scanner) {
-        ExceptionHandler exceptionHandler = new ExceptionHandler(); // Create an instance of ExceptionHandler
-        try {
-            Thread.sleep(500); // Half a second delay before showing the menu
-        } catch (InterruptedException e) {
-            exceptionHandler.handleInterruptedException();
-        }
-        try {
-            System.out.println("============================");
-            System.out.println("\nAdopter Menu:");
-            System.out.println("1. Display all animals");
-            System.out.println("2. Sort animals by age");
-            System.out.println("3. Group animals by type");
-            System.out.println("4. Interact with an animal");
-            System.out.println("5. Exit");
-
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
-
-            switch (choice) {
-                case 1:
-                    shelter.displayAnimals();
-                    break;
-                case 2:
-                    shelter.sortAnimalsByAge();
-                    break;
-                case 3:
-                    shelter.groupAnimalsByType();
-                    break;
-                case 4:
-                    interactWithAnimal(shelter, scanner);
-                    break;
-                case 5:
-                    System.out.println("Exiting Adopter Menu...");
-                    return false; // This takes the user to the previous menu
-                default:
-                    System.out.println("Invalid option. Please choose again.");
-                    break;
-            }
-        }
-         catch (java.util.InputMismatchException e) {
-
-                 exceptionHandler.handleInvalidInput();
-                 scanner.nextLine();
-         }
-
-        return true; // stay in the adopter menu
-    }
-
-    private static void interactWithAnimal(Shelter shelter, Scanner scanner) {
-        ExceptionHandler exceptionHandler = new ExceptionHandler(); // Create an instance of ExceptionHandler
-        try {
-        System.out.println("============================");
-        System.out.println("Enter the name of the animal to interact with:");
-        String name = scanner.nextLine();
-
-        Animal animal = shelter.findAnimalByName(name);
-        if (animal == null) {
-            System.out.println("No animal with that name found.");
-            return;
-        }
-
-        if (animal instanceof Voice) {
-            ((Voice) animal).makeSound();
-        } else {
-            System.out.println("This animal does not have a voice.");
-        }
-
-        if (animal instanceof Diet) {
-            ((Diet) animal).eat();
-        } else {
-            System.out.println("This animal does not have a diet.");
-        }}
-        catch (java.util.InputMismatchException e) {
-            exceptionHandler.handleInvalidInput();
-        }
-    }
-
-    private static Boolean handleAdminMenu(Shelter shelter, Scanner scanner) {
-        ExceptionHandler exceptionHandler = new ExceptionHandler(); // Create an instance of ExceptionHandler
-
-        try {
-            Thread.sleep(500); // Half a second delay before showing the menu
-        } catch (InterruptedException e) {
-            exceptionHandler.handleInterruptedException();
-        }
-
-        try {
-            System.out.println("============================");
-            System.out.println("\nAdmin Menu:");
-            System.out.println("1. Add an Animal");
-            System.out.println("2. Display all animals");
-            System.out.println("3. Sort animals by age");
-            System.out.println("4. Group animals by type");
-            System.out.println("5. Exit");
-
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
-
-            switch (choice) {
-                case 1:
-                    addAnimal(shelter, scanner);
-                    break;
-                case 2:
-                    shelter.displayAnimals();
-                    break;
-                case 3:
-                    shelter.sortAnimalsByAge();
-                    break;
-                case 4:
-                    shelter.groupAnimalsByType();
-                    break;
-                case 5:
-                    System.out.println("Exiting Admin Menu...");
-                    return false; // Exit Admin Menu
-                default:
-                    System.out.println("Invalid option. Please choose again.");
-                    break;
-            }
-
-        } catch (java.util.InputMismatchException e) {
-            exceptionHandler.handleInvalidInput();
-            scanner.nextLine();
-        }
-        return true; // Stay in the admin menu
     }
 
     private static void addAnimal(Shelter shelter, Scanner scanner) {
-        System.out.println("==================================");
         System.out.println("Choose the type of animal to add:");
         System.out.println("1. Dog");
         System.out.println("2. Cat");
@@ -234,19 +159,19 @@ public class Main {
     }
 
     // Methods for adding Dog, Cat, Rabbit, and Lizard (same as before)
-    private static void addDog(Shelter shelter, Scanner scanner){
-    System.out.print("Enter dog's name: ");
-    String name = scanner.nextLine();
-    System.out.print("Enter dog's age: ");
-    int age = scanner.nextInt();
-    scanner.nextLine(); // Consume newline
-    System.out.print("Enter dog's sex: ");
-    String sex = scanner.nextLine();
-    System.out.print("Enter dog's weight in KG: ");
-    float weight = scanner.nextFloat();
-    scanner.nextLine(); // Consume newline to clear the buffer
-    Dog dog = new Dog(name, age, sex, weight);
-    shelter.addAnimal(dog);
+    private static void addDog(Shelter shelter, Scanner scanner) {
+        System.out.print("Enter dog's name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter dog's age: ");
+        int age = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+        System.out.print("Enter dog's sex: ");
+        String sex = scanner.nextLine();
+        System.out.print("Enter dog's breed: ");
+        String breed = scanner.nextLine();
+
+        Dog dog = new Dog(name, age, sex, breed);
+        shelter.addAnimal(dog);
     }
 
     private static void addCat(Shelter shelter, Scanner scanner) {
@@ -257,10 +182,10 @@ public class Main {
         scanner.nextLine(); // Consume newline
         System.out.print("Enter cat's sex: ");
         String sex = scanner.nextLine();
-        System.out.print("Enter cat's color: ");
-        String color = scanner.nextLine();
+        System.out.print("Enter cat's pattern: ");
+        String pattern = scanner.nextLine();
 
-        Cat cat = new Cat(name, age, sex, color);
+        Cat cat = new Cat(name, age, sex, pattern);
         shelter.addAnimal(cat);
     }
 
@@ -294,5 +219,4 @@ public class Main {
         Lizard lizard = new Lizard(name, age, sex, poisonous);
         shelter.addAnimal(lizard);
     }
-
 }

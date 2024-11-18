@@ -1,86 +1,37 @@
 {"animals": [
     {
-        "sex": "female",
-        "name": "Mango",
-        "weight": 5,
+        "sex": "Male",
+        "name": "Rex",
         "type": "Dog",
-        "age": 4
+        "age": 3,
+        "breed": "German Shepherd"
     },
     {
-        "sex": "female",
-        "name": "Mochi",
-        "weight": 8,
-        "type": "Dog",
-        "age": 8
-    },
-    {
-        "color": "white",
-        "sex": "male",
-        "name": "Dori",
-        "type": "Rabbit",
-        "age": 3
-    },
-    {
-        "color": "brown",
-        "sex": "male",
-        "name": "Cappuccino",
-        "type": "Cat",
-        "age": 6
-    },
-    {
-        "color": "black",
-        "sex": "male",
-        "name": "Schwarz",
+        "sex": "Female",
+        "name": "Whiskers",
+        "pattern": "Tabby",
         "type": "Cat",
         "age": 2
     },
     {
-        "sex": "male",
-        "name": "Jacob",
-        "poisonous": false,
-        "type": "Lizard",
+        "color": "White",
+        "sex": "Female",
+        "name": "Snowball",
+        "type": "Rabbit",
         "age": 1
     },
     {
-        "sex": "female",
-        "name": "Shelby",
-        "weight": 12,
-        "type": "Dog",
-        "age": 2
-    },
-    {
-        "sex": "male",
-        "name": "Teemo",
-        "weight": 3,
-        "type": "Dog",
-        "age": 9
-    },
-    {
-        "sex": "male",
-        "name": "balaroo",
+        "sex": "Male",
+        "name": "Spike",
         "poisonous": true,
         "type": "Lizard",
-        "age": 19
-    },
-    {
-        "color": "brown",
-        "sex": "male",
-        "name": "Mocha",
-        "type": "Rabbit",
-        "age": 12
-    },
-    {
-        "sex": "male",
-        "name": "Tic",
-        "weight": 3,
-        "type": "Dog",
-        "age": 8
+        "age": 5
     },
     {
         "sex": "female",
-        "name": "java",
-        "weight": 5,
+        "name": "mango",
         "type": "Dog",
-        "age": 90
+        "age": 3,
+        "breed": "mango"
     }
 ]}

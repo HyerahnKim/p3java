@@ -6,8 +6,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.json.JSONArray;
@@ -17,25 +15,15 @@ import org.json.JSONObject;
 // Shelter can have a constructor that initializes an array of Animal (or arrays of Dog and Cat)
 public class Shelter {
     private List<Animal> animals;
-    private Set<String> animalNames; // Set to track unique names
-    private ExceptionHandler exceptionHandler;
+    private int currentIndex = 0;
+    private ExceptionHandler exceptionHandler = new ExceptionHandler();
 
     public Shelter() {
         animals = new ArrayList<>();
-        animalNames = new HashSet<>();
-        exceptionHandler = new ExceptionHandler();
     }
-
     public void addAnimal(Animal animal) {
-        if (animalNames.contains(animal.getName().toLowerCase())) {
-            exceptionHandler.sameNameException();
-            return; // Exit without adding the animal
-        }
-
         animals.add(animal);
-        animalNames.add(animal.getName().toLowerCase());
         System.out.println(animal.getName() + " has been added to the shelter.");
-        autoSave();
     }
 
     public void displayAnimals() {
@@ -46,15 +34,35 @@ public class Shelter {
             animals.forEach(System.out::println);
         }
     }
+    // Ask user for file
+    public void askUserForFile() {
+        String filename;
 
-    // Auto-save method
-    private void autoSave() {
-        try {
-            saveAnimalsToJson("animals.json");
-        } catch (IOException e) {
-            System.out.println("Error saving animals to json.");
+        while (true) {
+            System.out.print("Please enter the filename to load animals from: ");
+            filename = exceptionHandler.handleIOException(""); // Initial prompt without an error message
+
+            try {
+                // Try to read the content of the file
+                String content = new String(Files.readAllBytes(Paths.get(filename)));
+
+                // If reading is successful, print the content and load animals
+                System.out.println("File content:");
+                System.out.println(content);
+
+                // Optionally, load animals if the JSON format is correct
+                loadAnimalsFromJson(filename);
+
+                // Exit the loop after successfully loading the file
+                break;
+
+            } catch (IOException e) {
+                // Use ExceptionHandler to prompt for another filename if an IOException occurs
+                filename = exceptionHandler.handleIOException("Error: Could not open file '" + filename + "'. Please try again.");
+            }
         }
     }
+
 
     // Save animals to a JSON file
     public void saveAnimalsToJson(String filename) throws IOException {
@@ -62,75 +70,72 @@ public class Shelter {
         for (Animal animal : animals) {
             jsonArray.put(animal.toJson()); // Convert each animal to JSON
         }
+
         JSONObject shelterJson = new JSONObject();
         shelterJson.put("animals", jsonArray);
 
         try (FileWriter file = new FileWriter(filename)) {
             file.write(shelterJson.toString(4)); // Pretty print with 4 spaces
         }
+        System.out.println("Animals have been saved to " + filename);
     }
 
     // Load animals from a JSON file
     public void loadAnimalsFromJson(String filename) throws IOException {
         String content = new String(Files.readAllBytes(Paths.get(filename)));
-
         JSONObject shelterJson = new JSONObject(content);
         JSONArray jsonArray = shelterJson.getJSONArray("animals");
 
         animals.clear(); // Clear existing list
-        animalNames.clear(); // Clear the names set
-
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonAnimal = jsonArray.getJSONObject(i);
             String type = jsonAnimal.getString("type");
 
-            Animal animal = null;
             switch (type) {
                 case "Dog":
-                    animal = new Dog(
+                    Dog dog = new Dog(
                             jsonAnimal.getString("name"),
                             jsonAnimal.getInt("age"),
                             jsonAnimal.getString("sex"),
-                            jsonAnimal.getInt("weight")
+                            jsonAnimal.getString("breed")
                     );
-                    //animals.add(dog);
+                    animals.add(dog);
                     break;
                 case "Cat":
-                    animal = new Cat(
+                    Cat cat = new Cat(
                             jsonAnimal.getString("name"),
                             jsonAnimal.getInt("age"),
                             jsonAnimal.getString("sex"),
-                            jsonAnimal.getString("color")
+                            jsonAnimal.getString("pattern")
                     );
-                    //animals.add(cat);
+                    animals.add(cat);
                     break;
                 case "Rabbit":
-                    animal = new Rabbit(
+                    Rabbit rabbit = new Rabbit(
                             jsonAnimal.getString("name"),
                             jsonAnimal.getInt("age"),
                             jsonAnimal.getString("sex"),
                             jsonAnimal.getString("color")
                     );
-                    //animals.add(rabbit);
+                    animals.add(rabbit);
                     break;
                 case "Lizard":
-                    animal = new Lizard(
+                    Lizard lizard = new Lizard(
                             jsonAnimal.getString("name"),
                             jsonAnimal.getInt("age"),
                             jsonAnimal.getString("sex"),
                             jsonAnimal.getBoolean("poisonous")
                     );
-                    //animals.add(lizard);
+                    animals.add(lizard);
                     break;
                 default:
                     System.out.println("Unknown animal type: " + type);
                     break;
             }
-            animals.add(animal); // Add to the list
-            animalNames.add(animal.getName().toLowerCase()); // Add the name to the set
         }
         System.out.println("Animals have been loaded from " + filename);
     }
+
 
     // 1. Sort animals by age
     public void sortAnimalsByAge() {
@@ -144,7 +149,8 @@ public class Shelter {
         }
     }
 
-    // 2. Group animals by type
+
+    // 2. Group animals by type (e.g., Dogs and Cats)
     public void groupAnimalsByType() {
         System.out.println("Animals grouped by type:");
         List<Dog> dogs = animals.stream()
@@ -155,16 +161,6 @@ public class Shelter {
                 .filter(animal -> animal instanceof Cat)
                 .map(animal -> (Cat) animal)
                 .collect(Collectors.toList());
-        List<Rabbit> rabbits = animals.stream()
-                .filter(animal -> animal instanceof Rabbit)
-                .map(animal -> (Rabbit) animal)
-                .collect(Collectors.toList());
-        List<Lizard> lizards = animals.stream()
-                .filter(animal -> animal instanceof Lizard)
-                .map(animal -> (Lizard) animal)
-                .collect(Collectors.toList());
-
-
 
         System.out.println("Dogs:");
         for (Dog dog : dogs) {
@@ -175,38 +171,20 @@ public class Shelter {
         for (Cat cat : cats) {
             System.out.println(cat.toString());
         }
-
-        System.out.println("Rabbits:");
-        for (Rabbit rabbit : rabbits) {
-            System.out.println(rabbit.toString());
-        }
-
-        System.out.println("Lizards:");
-        for (Lizard lizard : lizards) {
-            System.out.println(lizard.toString());
-        }
     }
 
-    // 3. Find animals by name
-    public Animal findAnimalByName(String name) {
-        return animals.stream()
-                .filter(animal -> animal.getName().equalsIgnoreCase(name))
-                .findFirst()
-                .orElse(null);
-    }
-
-    // 4. Remove animal by name
-    public void removeAnimal(String name) {
-        Animal animal = findAnimalByName(name);
-        if (animal != null) {
-            animals.remove(animal);
-            animalNames.remove(name.toLowerCase()); // Remove name from Set
-            System.out.println(name + " has been removed from the shelter.");
-        } else {
-            System.out.println("No animal with the name '" + name + "' found.");
+    // 3. Sort and display all dogs by age
+    public void sortDogsByAge() {
+        List<Dog> dogs = animals.stream()
+                .filter(animal -> animal instanceof Dog)
+                .map(animal -> (Dog) animal)
+                .sorted()
+                .collect(Collectors.toList());
+        System.out.println("Dogs sorted by age:");
+        for (Dog dog : dogs) {
+            System.out.println(dog.toString());
         }
     }
-
 
 
 }
