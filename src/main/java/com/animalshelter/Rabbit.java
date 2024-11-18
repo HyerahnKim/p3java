@@ -17,6 +17,17 @@ public class Rabbit extends Animal implements Diet{
         this.color = color;
     }
 
+
+    // Interface for Diet
+    public void eat() {
+        System.out.println("Rabbit is eating cabbages.");
+    }
+
+    @Override
+    public String toString() {
+        return "Rabbit [Name=" + name + ", Age=" + age + ", Sex=" + sex +  ", Color=" + color + "]";
+    }
+
     // json
     @Override
     public JSONObject toJson() {
@@ -26,13 +37,4 @@ public class Rabbit extends Animal implements Diet{
         return json;
     }
 
-    // Interface for Diet
-    public void eat() {
-        System.out.println("Rabbit is eating cabbages.");
-    }
-
-    @Override
-    public String toString() {
-        return "Rabbit [Color=" + color + "]";
-    }
 }

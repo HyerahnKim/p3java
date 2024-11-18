@@ -1,37 +1,86 @@
 {"animals": [
     {
-        "sex": "Male",
-        "name": "Rex",
+        "sex": "female",
+        "name": "Mango",
+        "weight": 5,
         "type": "Dog",
-        "age": 3,
-        "breed": "German Shepherd"
+        "age": 4
     },
     {
-        "sex": "Female",
-        "name": "Whiskers",
-        "pattern": "Tabby",
+        "sex": "female",
+        "name": "Mochi",
+        "weight": 8,
+        "type": "Dog",
+        "age": 8
+    },
+    {
+        "color": "white",
+        "sex": "male",
+        "name": "Dori",
+        "type": "Rabbit",
+        "age": 3
+    },
+    {
+        "color": "brown",
+        "sex": "male",
+        "name": "Cappuccino",
+        "type": "Cat",
+        "age": 6
+    },
+    {
+        "color": "black",
+        "sex": "male",
+        "name": "Schwarz",
         "type": "Cat",
         "age": 2
     },
     {
-        "color": "White",
-        "sex": "Female",
-        "name": "Snowball",
-        "type": "Rabbit",
+        "sex": "male",
+        "name": "Jacob",
+        "poisonous": false,
+        "type": "Lizard",
         "age": 1
     },
     {
-        "sex": "Male",
-        "name": "Spike",
+        "sex": "female",
+        "name": "Shelby",
+        "weight": 12,
+        "type": "Dog",
+        "age": 2
+    },
+    {
+        "sex": "male",
+        "name": "Teemo",
+        "weight": 3,
+        "type": "Dog",
+        "age": 9
+    },
+    {
+        "sex": "male",
+        "name": "balaroo",
         "poisonous": true,
         "type": "Lizard",
-        "age": 5
+        "age": 19
+    },
+    {
+        "color": "brown",
+        "sex": "male",
+        "name": "Mocha",
+        "type": "Rabbit",
+        "age": 12
+    },
+    {
+        "sex": "male",
+        "name": "Tic",
+        "weight": 3,
+        "type": "Dog",
+        "age": 8
     },
     {
         "sex": "female",
-        "name": "mango",
+        "name": "java",
+        "weight": 5,
         "type": "Dog",
-        "age": 3,
-        "breed": "mango"
+        "age": 90
     }
 ]}

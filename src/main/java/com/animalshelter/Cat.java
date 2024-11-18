@@ -2,20 +2,20 @@ package com.animalshelter;
 import org.json.JSONObject;
 
 public class Cat extends Animal implements Voice, Diet, Comparable<Cat> {
-    private String pattern;
+    private String color;
 
-    public Cat(String name, int age, String sex, String pattern) {
+    public Cat(String name, int age, String sex, String color) {
         super(name, age, sex);
-        this.pattern = pattern;
+        this.color = color;
     }
 
-    // Getter and Setter for pattern
-    public String getPattern() {
-        return pattern;
+    // Getter and Setter for color
+    public String getColor() {
+        return color;
     }
 
-    public void setPattern(String pattern) {
-        this.pattern = pattern;
+    public void setColor(String color) {
+        this.color = color;
     }
 
     // Interface Voice and Diet
@@ -31,7 +31,7 @@ public class Cat extends Animal implements Voice, Diet, Comparable<Cat> {
     public JSONObject toJson() {
         JSONObject json = super.toJson();
         json.put("type", "Cat");
-        json.put("pattern", pattern);
+        json.put("color", color);
         return json;
     }
 
@@ -43,6 +43,6 @@ public class Cat extends Animal implements Voice, Diet, Comparable<Cat> {
 
     @Override
     public String toString() {
-        return "Cat [Name=" + name + ", Age=" + age + ", Sex=" + sex + "]";
+        return "Cat    [Name=" + name + ", Age=" + age + ", Sex=" + sex +  ", Color=" + color + "]";
     }
 }
