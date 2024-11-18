@@ -12,6 +12,7 @@ public class Main {
     public static void main(String[] args) {
         Shelter shelter = new Shelter();
         Scanner scanner = new Scanner(System.in);
+
         // Load animals from JSON at startup
         try {
             shelter.loadAnimalsFromJson("animals.json");
