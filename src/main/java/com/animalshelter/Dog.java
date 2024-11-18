@@ -2,27 +2,28 @@ package com.animalshelter;
 import org.json.JSONObject;
 
 public class Dog extends Animal implements Voice, Diet, Comparable<Dog>{
-    private String breed;
+    private float weight;
 
-    public Dog(String name, int age, String sex, String breed) {
+    public Dog(String name, int age, String sex, float weight) {
         super(name, age, sex);
-        this.breed = breed;
+        this.weight = weight;
     }
 
     // Interface Voice and Diet
     public void makeSound() {
-        System.out.println("Woof! Woof!");
+        System.out.println("Woof Woof!");
     }
     public void eat() {
-        System.out.println("Dog is eating blueberries.");
+        System.out.println("Dogs eat blueberries.");
     }
 
-    // Getter and Setter for breed
-    public String getBreed() {
-        return breed;
+    // Getter and Setter for weight
+    public float getWeight() {
+        return weight;
     }
-    public void setBreed(String breed) {
-        this.breed = breed;
+
+    public void setWeight(float weight) {
+        this.weight = weight;
     }
 
     // json
@@ -30,7 +31,7 @@ public class Dog extends Animal implements Voice, Diet, Comparable<Dog>{
     public JSONObject toJson() {
         JSONObject json = super.toJson();
         json.put("type", "Dog");
-        json.put("breed", breed);
+        json.put("weight", weight);
         return json;
     }
 
@@ -40,6 +41,6 @@ public class Dog extends Animal implements Voice, Diet, Comparable<Dog>{
     }
 
     public String toString() {
-        return "Dog [Name=" + name + ", Age=" + age + ", Sex=" + sex + ", Breed=" + breed + "]";
+        return "Dog    [Name=" + name + ", Age=" + age + ", Sex=" + sex + ", Weight(KG)=" + weight + "]";
     }
 }
