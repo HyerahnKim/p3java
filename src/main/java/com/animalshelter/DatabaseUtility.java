@@ -1,0 +1,15 @@
+package com.animalshelter;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DatabaseUtility {
+    private static final String DB_URL = "jdbc:mysql://localhost:3307/animal_shelter";
+    private static final String DB_USER = "root"; // Replace with your MySQL username
+    private static final String DB_PASSWORD = "Kennerweg9"; // Replace with your MySQL password
+
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+    }
+}

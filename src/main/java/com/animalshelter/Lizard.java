@@ -17,19 +17,21 @@ public class Lizard extends Animal implements Diet {
         this.poisonous = poisonous;
     }
 
-    // json
-
-
     // Interface for Diet
-    public void eat() {
-        System.out.println("Lizard is eating insects.");
+    public String eat() {
+        return("Lizard is eating insects.");
     }
 
+    // Interface for Sound
+    public String makeSound() {
+        return("The lizard makes a soft clicking sound.");
+    }
     @Override
     public String toString() {
         return "Lizard [Name=" + name + ", Age=" + age + ", Sex=" + sex + ", Poisonous=" + poisonous + "]";
     }
 
+    // json
     @Override
     public JSONObject toJson() {
         JSONObject json = super.toJson();

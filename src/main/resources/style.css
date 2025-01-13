@@ -1,0 +1,134 @@
+/* Root styling for the entire application */
+.root {
+    -fx-font-family: "Open Sans", sans-serif; /* Use Open Sans or any sans-serif */
+    -fx-background-color: #e7f1e3; /* Light green background for every page */
+    -fx-text-fill: #153d07; /* Default text color: dark green */
+    -fx-padding: 20; /* Add padding around the edges of the entire window */
+}
+
+/* Default label styling */
+.label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #153d07;
+    -fx-alignment: center-left; /* Left-align text by default */
+}
+
+/* Title styling */
+.title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #153d07; /* Dark green text */
+    -fx-alignment: center; /* Center-align titles where it makes sense */
+    -fx-padding: 10 0 20 0; /* Add padding above and below */
+}
+
+/* TextField styling */
+.text-field {
+    -fx-border-color: #153d07; /* Dark green border */
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 0; /* Remove 3D effects */
+    -fx-background-radius: 0; /* Strictly 2D look */
+    -fx-padding: 5;
+    -fx-text-fill: #153d07;
+}
+
+/* TextArea styling */
+.text-area {
+    -fx-border-color: #153d07;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 10;
+    -fx-text-fill: #153d07;
+}
+
+/* ComboBox styling */
+.combo-box {
+    -fx-border-color: #153d07;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 5;
+    -fx-text-fill: #153d07;
+}
+
+/* Default button styling */
+.button {
+    -fx-background-color: #153d07; /* Dark green background */
+    -fx-text-fill: white; /* White text on buttons */
+    -fx-font-weight: bold;
+    -fx-padding: 8 15; /* Padding for button text */
+    -fx-border-radius: 0; /* Remove rounded edges */
+    -fx-background-radius: 0; /* Strictly 2D look */
+}
+
+/* Button hover effect */
+.button:hover {
+    -fx-background-color: #196b10; /* Slightly brighter green on hover */
+}
+
+/* Button pressed effect */
+.button:pressed {
+    -fx-background-color: #0f2a04; /* Darker green when pressed */
+}
+
+/* Styling for headers or section titles */
+.header {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #153d07;
+    -fx-alignment: center-left; /* Left-align unless explicitly overridden */
+    -fx-padding: 5 0 10 0;
+}
+
+/* Styling for error messages */
+.error-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: red; /* Red text for errors */
+}
+
+/* Styling for success messages */
+.success-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #196b10; /* Bright green for success messages */
+}
+
+/* ScrollPane styling */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: #153d07;
+    -fx-border-width: 1.5px;
+}
+
+/* Aligning contents inside ScrollPane */
+.scroll-pane > .viewport {
+    -fx-padding: 10; /* Add padding to content inside ScrollPane */
+}
+
+/* Alignment for VBox layouts */
+.vbox {
+    -fx-alignment: top-left; /* Align contents to the top-left by default */
+    -fx-background-color: #e7f1e3; /* Your desired background color */
+    -fx-padding: 20;
+    -fx-spacing: 10;
+}
+
+/* Alignment for HBox layouts */
+.hbox {
+    -fx-alignment: center-left; /* Left-align horizontally by default */
+}
+
+/* ScrollPane Styling */
+.scroll-pane {
+    -fx-background-color: transparent; /* Transparent background to match layout */
+    -fx-border-color: transparent; /* Removes any default border */
+    -fx-padding: 0; /* Add padding around the scrollable content */
+    -fx-hbar-policy: never; /* Disable horizontal scroll bar */
+    -fx-vbar-policy: always; /* Always show vertical scroll bar */
+}
+
+/* Content inside the ScrollPane */
+.scroll-pane > .viewport {
+    -fx-padding: 10; /* Add padding inside the scrollable content */
+    -fx-background-color: #f5f5f5; /* Match the VBox background */
+}

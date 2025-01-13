@@ -1,86 +1,135 @@
 {"animals": [
     {
-        "sex": "female",
+        "color": "White",
+        "sex": "Female",
+        "name": "Snowball",
+        "type": "Rabbit",
+        "age": 2
+    },
+    {
+        "sex": "Female",
         "name": "Mango",
+        "weight": 4,
+        "type": "Dog",
+        "age": 3
+    },
+    {
+        "color": "White",
+        "sex": "Male",
+        "name": "Thumper",
+        "type": "Rabbit",
+        "age": 1
+    },
+    {
+        "sex": "Female",
+        "name": "Lizzie",
+        "poisonous": true,
+        "type": "Lizard",
+        "age": 4
+    },
+    {
+        "sex": "Male",
+        "name": "Charlie",
+        "weight": 10,
+        "type": "Dog",
+        "age": 5
+    },
+    {
+        "color": "Gray",
+        "sex": "Female",
+        "name": "Snowy",
+        "type": "Rabbit",
+        "age": 2
+    },
+    {
+        "sex": "Female",
+        "name": "Bella",
+        "weight": 5.5,
+        "type": "Dog",
+        "age": 3
+    },
+    {
+        "sex": "Male",
+        "name": "Max",
+        "weight": 7,
+        "type": "Dog",
+        "age": 2
+    },
+    {
+        "color": "White",
+        "sex": "Female",
+        "name": "Luna",
+        "type": "Cat",
+        "age": 4
+    },
+    {
+        "sex": "Male",
+        "name": "Rocky",
+        "weight": 12,
+        "type": "Dog",
+        "age": 6
+    },
+    {
+        "color": "Gray",
+        "sex": "Male",
+        "name": "Milo",
+        "type": "Cat",
+        "age": 2
+    },
+    {
+        "sex": "Female",
+        "name": "Daisy",
+        "weight": 6.2,
+        "type": "Dog",
+        "age": 3
+    },
+    {
+        "color": "Tabby",
+        "sex": "Male",
+        "name": "Shadow",
+        "type": "Cat",
+        "age": 7
+    },
+    {
+        "sex": "Male",
+        "name": "Gamza",
         "weight": 5,
         "type": "Dog",
         "age": 4
     },
     {
-        "sex": "female",
-        "name": "Mochi",
-        "weight": 8,
-        "type": "Dog",
-        "age": 8
-    },
-    {
-        "color": "white",
-        "sex": "male",
-        "name": "Dori",
-        "type": "Rabbit",
-        "age": 3
-    },
-    {
-        "color": "brown",
-        "sex": "male",
-        "name": "Cappuccino",
+        "color": "Yellow",
+        "sex": "Female",
+        "name": "Gigi",
         "type": "Cat",
-        "age": 6
+        "age": 4
     },
     {
-        "color": "black",
-        "sex": "male",
-        "name": "Schwarz",
-        "type": "Cat",
-        "age": 2
-    },
-    {
-        "sex": "male",
-        "name": "Jacob",
+        "sex": "Female",
+        "name": "lentil",
         "poisonous": false,
         "type": "Lizard",
         "age": 1
     },
     {
-        "sex": "female",
-        "name": "Shelby",
-        "weight": 12,
-        "type": "Dog",
+        "sex": "Male",
+        "name": "mini",
+        "poisonous": true,
+        "type": "Lizard",
+        "age": 1
+    },
+    {
+        "color": "Black",
+        "sex": "Female",
+        "name": "Whiskers",
+        "type": "Cat",
         "age": 2
     },
     {
-        "sex": "male",
-        "name": "Teemo",
-        "weight": 3,
+        "sex": "Male",
+        "name": "Buddy",
+        "weight": 12,
         "type": "Dog",
-        "age": 9
-    },
-    {
-        "sex": "male",
-        "name": "balaroo",
-        "poisonous": true,
-        "type": "Lizard",
-        "age": 19
-    },
-    {
-        "color": "brown",
-        "sex": "male",
-        "name": "Mocha",
-        "type": "Rabbit",
         "age": 12
-    },
-    {
-        "sex": "male",
-        "name": "Tic",
-        "weight": 3,
-        "type": "Dog",
-        "age": 8
-    },
-    {
-        "sex": "female",
-        "name": "java",
-        "weight": 5,
-        "type": "Dog",
-        "age": 90
     }
 ]}

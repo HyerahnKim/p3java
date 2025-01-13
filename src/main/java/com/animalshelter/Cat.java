@@ -13,28 +13,26 @@ public class Cat extends Animal implements Voice, Diet, Comparable<Cat> {
     public String getColor() {
         return color;
     }
-
     public void setColor(String color) {
         this.color = color;
     }
 
     // Interface Voice and Diet
-    public void makeSound() {
-        System.out.println("Meow! Meow!");
+    public String makeSound() {
+        return "Meow! Meow!";
     }
-    public void eat() {
-        System.out.println("Cat is eating yogurt.");
+    public String eat() {
+        return "The cat is eating yogurt.";
     }
 
     // json
     @Override
     public JSONObject toJson() {
-        JSONObject json = super.toJson();
-        json.put("type", "Cat");
-        json.put("color", color);
-        return json;
+    JSONObject json = super.toJson();
+    json.put("type", "Cat");
+    json.put("color", color);
+    return json;
     }
-
     // Implementing compareTo to compare by age
     @Override
     public int compareTo(Cat otherCat) {

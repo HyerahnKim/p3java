@@ -19,8 +19,13 @@ public class Rabbit extends Animal implements Diet{
 
 
     // Interface for Diet
-    public void eat() {
-        System.out.println("Rabbit is eating cabbages.");
+    public String eat() {
+        return("Rabbit is eating cabbages.");
+    }
+
+    // Interface for Sound
+    public String makeSound() {
+        return("Rabbit remains silent.");
     }
 
     @Override

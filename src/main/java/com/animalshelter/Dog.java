@@ -10,11 +10,13 @@ public class Dog extends Animal implements Voice, Diet, Comparable<Dog>{
     }
 
     // Interface Voice and Diet
-    public void makeSound() {
-        System.out.println("Woof Woof!");
+    @Override
+    public String makeSound() {
+        return("Woof Woof!");
     }
-    public void eat() {
-        System.out.println("Dogs eat blueberries.");
+    @Override
+    public String eat() {
+        return("The dog is eating blueberries.");
     }
 
     // Getter and Setter for weight
